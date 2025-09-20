@@ -3,6 +3,7 @@ using ShoppingBasket.Api.Dtos;
 using ShoppingBasket.Api.Mappers;
 using ShoppingBasket.Application.Domain.Features.Baskets.AddBasketItems;
 using ShoppingBasket.Application.Domain.Features.Baskets.CreateBasket;
+using ShoppingBasket.Application.Domain.Features.Baskets.GetBasketTotal;
 using ShoppingBasket.Application.Domain.Features.Baskets.RemoveBasketItem;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -14,6 +15,7 @@ public class BasketsController(
     CreateBasketHandler createBasketHandler,
     AddBasketItemsHandler addBasketItemsHandler,
     RemoveBasketItemHandler removeBasketItemHandler,
+    GetBasketTotalHandler getBasketTotalHandler,
     ILogger<BasketsController> logger) : ApiController
 {
     /*
@@ -80,5 +82,20 @@ public class BasketsController(
             return BuildErrorResponse(result.ErrorCode);
 
         return Ok(basket.ToDto());
+    }
+
+    [HttpGet(ApiRoutes.Basket.GetTotal)]
+    [SwaggerOperation(Summary = "Get basket total with and without VAT")]
+    public async Task<IActionResult> GetBasketTotal(
+        Guid id,
+        CancellationToken cancellationToken = default)
+    {
+        var query = new GetBasketTotalQuery(id);
+        var result = await getBasketTotalHandler.ExecuteAsync(query, cancellationToken);
+
+        if (!result.IsValid(out var basketTotal))
+            return BuildErrorResponse(result.ErrorCode);
+
+        return Ok(basketTotal.ToDto());
     }
 }

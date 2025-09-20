@@ -56,7 +56,7 @@ public class RemoveBasketItemHandlerTests
         var cancellationToken = CancellationToken.None;
 
         var existingItem = new Item(existingItemId, "Laptop", 999.99m);
-        var basketItem = new BasketItem(Guid.NewGuid(), existingItem, 1, false, null, 999.99m);
+        var basketItem = new BasketItem(Guid.NewGuid(), existingItem, 1, false, null);
         var basket = new Basket(basketId, [basketItem], null);
 
         _mockBasketsRepository
@@ -85,7 +85,7 @@ public class RemoveBasketItemHandlerTests
         var cancellationToken = CancellationToken.None;
 
         var item = new Item(itemId, "Laptop", 999.99m);
-        var basketItem = new BasketItem(Guid.NewGuid(), item, 1, false, null, 999.99m);
+        var basketItem = new BasketItem(Guid.NewGuid(), item, 1, false, null);
         var basket = new Basket(basketId, [basketItem], null);
 
         _mockBasketsRepository
@@ -122,7 +122,7 @@ public class RemoveBasketItemHandlerTests
         var cancellationToken = CancellationToken.None;
 
         var item = new Item(itemId, "Laptop", 999.99m);
-        var basketItem = new BasketItem(Guid.NewGuid(), item, 2, false, null, 1999.98m);
+        var basketItem = new BasketItem(Guid.NewGuid(), item, 2, false, null);
         var basket = new Basket(basketId, [basketItem], null);
 
         var updatedBasket = new Basket(basketId, [], null);
@@ -162,8 +162,8 @@ public class RemoveBasketItemHandlerTests
         var itemToRemove = new Item(itemToRemoveId, "Laptop", 999.99m);
         var remainingItem = new Item(remainingItemId, "Mouse", 29.99m);
         
-        var basketItemToRemove = new BasketItem(Guid.NewGuid(), itemToRemove, 1, false, null, 999.99m);
-        var basketItemToKeep = new BasketItem(Guid.NewGuid(), remainingItem, 2, false, null, 59.98m);
+        var basketItemToRemove = new BasketItem(Guid.NewGuid(), itemToRemove, 1, false, null);
+        var basketItemToKeep = new BasketItem(Guid.NewGuid(), remainingItem, 2, false, null);
         
         var basket = new Basket(basketId, [basketItemToRemove, basketItemToKeep], null);
         var updatedBasket = new Basket(basketId, [basketItemToKeep], null);

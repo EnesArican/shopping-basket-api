@@ -11,8 +11,7 @@ public static class BasketItemEntityMapper
             basketItem.Item.ToDomain(),
             basketItem.Quantity,
             basketItem.IsDiscounted,
-            basketItem.DiscountPercentage,
-            basketItem.TotalPrice);
+            basketItem.DiscountPercentage);
 
     public static BasketItemEntity ToEntity(this BasketItem basketItem) =>
         new(

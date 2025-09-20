@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using ShoppingBasket.Application.Domain.Features.Baskets.AddBasketItems;
 using ShoppingBasket.Application.Domain.Features.Baskets.CreateBasket;
+using ShoppingBasket.Application.Domain.Features.Baskets.GetBasketTotal;
 using ShoppingBasket.Application.Domain.Features.Baskets.RemoveBasketItem;
 using ShoppingBasket.Application.Domain.Features.Items.GetItems;
 using ShoppingBasket.Application.Infrastructure.Repositories;
@@ -17,6 +18,7 @@ public static class ServiceCollectionExtensions
             .AddSingleton<CreateBasketHandler>()
             .AddSingleton<AddBasketItemsHandler>()
             .AddSingleton<RemoveBasketItemHandler>()
+            .AddSingleton<GetBasketTotalHandler>()
             .AddSingleton<GetItemsHandler>()
             ;
 

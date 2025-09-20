@@ -8,7 +8,7 @@ public static class ApiRoutes
         public const string AddItem = "items";
         public const string RemoveItem = "items/{itemId}";
         public const string UpdateItemQuantity = "items/{itemId}/quantity";
-        public const string ClearBasket = "clear";
+        public const string GetTotal = "{id}/total";
     }
 
     public static class Item

@@ -66,8 +66,7 @@ public class AddBasketItemsHandler(
                     item,
                     itemRequest.Quantity,
                     itemRequest.IsDiscounted,
-                    itemRequest.DiscountPercentage,
-                    item.Price * itemRequest.Quantity);
+                    itemRequest.DiscountPercentage);
 
                 updatedItems.Add(newBasketItem);
             }
@@ -76,4 +75,5 @@ public class AddBasketItemsHandler(
         basket.SetItems(updatedItems);
         return await basketsRepository.UpdateBasketAsync(basket, token);
     }
+
 }

@@ -262,7 +262,7 @@ public class AddBasketItemsHandlerTests
         var catalogItem = new Item(itemId, "Test Item", 10.00m);
         var updatedBasket = new Basket(basketId, new List<BasketItem>
         {
-            new BasketItem(Guid.NewGuid(), catalogItem, 2, false, null, 20.00m)
+            new BasketItem(Guid.NewGuid(), catalogItem, 2, false, null)
         }, null);
 
         _mockBasketsRepository
@@ -310,8 +310,8 @@ public class AddBasketItemsHandlerTests
         var catalogItem2 = new Item(itemId2, "Test Item 2", 15.00m);
         var updatedBasket = new Basket(basketId, new List<BasketItem>
         {
-            new BasketItem(Guid.NewGuid(), catalogItem1, 1, false, null, 5.00m),
-            new BasketItem(Guid.NewGuid(), catalogItem2, 3, false, null, 45.00m)
+            new BasketItem(Guid.NewGuid(), catalogItem1, 1, false, null),
+            new BasketItem(Guid.NewGuid(), catalogItem2, 3, false, null)
         }, null);
 
         _mockBasketsRepository
@@ -353,10 +353,10 @@ public class AddBasketItemsHandlerTests
         var cancellationToken = CancellationToken.None;
 
         var existingBasket = new Basket(basketId, new List<BasketItem>(), null);
-        var catalogItem = new Item(itemId, "Test Item", 20.00m);
+        var catalogItem = new Item(itemId, "Test Item", 10.00m);
         var updatedBasket = new Basket(basketId, new List<BasketItem>
         {
-            new BasketItem(Guid.NewGuid(), catalogItem, 1, true, 25, 20.00m)
+            new BasketItem(Guid.NewGuid(), catalogItem, 1, true, 25)
         }, null);
 
         _mockBasketsRepository
@@ -397,7 +397,7 @@ public class AddBasketItemsHandlerTests
         var catalogItem = new Item(itemId, "Test Item", 10.00m);
         var updatedBasket = new Basket(basketId, new List<BasketItem>
         {
-            new BasketItem(Guid.NewGuid(), catalogItem, 1, false, null, 10.00m)
+            new BasketItem(Guid.NewGuid(), catalogItem, 1, false, null)
         }, null);
 
         _mockBasketsRepository
@@ -439,10 +439,10 @@ public class AddBasketItemsHandlerTests
         var cancellationToken = CancellationToken.None;
 
         var catalogItem = new Item(itemId, "Test Item", 10.00m);
-        var existingBasketItem = new BasketItem(Guid.NewGuid(), catalogItem, 1, false, null, 10.00m);
+        var existingBasketItem = new BasketItem(Guid.NewGuid(), catalogItem, 1, false, null);
         var existingBasket = new Basket(basketId, new List<BasketItem> { existingBasketItem }, null);
         
-        var updatedBasketItem = new BasketItem(existingBasketItem.Id, catalogItem, 3, false, null, 30.00m);
+        var updatedBasketItem = new BasketItem(existingBasketItem.Id, catalogItem, 3, false, null);
         var updatedBasket = new Basket(basketId, new List<BasketItem> { updatedBasketItem }, null);
 
         _mockBasketsRepository
@@ -479,11 +479,11 @@ public class AddBasketItemsHandlerTests
         var command = new AddBasketItemsCommand(basketId, new List<BasketItemRequest> { basketItemRequest });
         var cancellationToken = CancellationToken.None;
 
-        var catalogItem = new Item(itemId, "Test Item", 20.00m);
-        var existingBasketItem = new BasketItem(Guid.NewGuid(), catalogItem, 2, false, null, 40.00m);
+        var catalogItem = new Item(itemId, "Test Item", 10.00m);
+        var existingBasketItem = new BasketItem(Guid.NewGuid(), catalogItem, 2, false, null);
         var existingBasket = new Basket(basketId, new List<BasketItem> { existingBasketItem }, null);
         
-        var updatedBasketItem = new BasketItem(existingBasketItem.Id, catalogItem, 3, true, 15, 60.00m);
+        var updatedBasketItem = new BasketItem(existingBasketItem.Id, catalogItem, 3, true, 15);
         var updatedBasket = new Basket(basketId, new List<BasketItem> { updatedBasketItem }, null);
 
         _mockBasketsRepository
@@ -528,12 +528,12 @@ public class AddBasketItemsHandlerTests
 
         var catalogItem1 = new Item(itemId1, "Test Item 1", 5.00m);
         var catalogItem2 = new Item(itemId2, "Test Item 2", 15.00m);
-        var existingBasketItem1 = new BasketItem(Guid.NewGuid(), catalogItem1, 2, false, null, 10.00m);
-        var existingBasketItem2 = new BasketItem(Guid.NewGuid(), catalogItem2, 1, false, null, 15.00m);
+        var existingBasketItem1 = new BasketItem(Guid.NewGuid(), catalogItem1, 2, false, null);
+        var existingBasketItem2 = new BasketItem(Guid.NewGuid(), catalogItem2, 1, false, null);
         var existingBasket = new Basket(basketId, new List<BasketItem> { existingBasketItem1, existingBasketItem2 }, null);
         
-        var updatedBasketItem1 = new BasketItem(existingBasketItem1.Id, catalogItem1, 3, false, null, 15.00m);
-        var updatedBasketItem2 = new BasketItem(existingBasketItem2.Id, catalogItem2, 3, true, 10, 45.00m);
+        var updatedBasketItem1 = new BasketItem(existingBasketItem1.Id, catalogItem1, 3, false, null);
+        var updatedBasketItem2 = new BasketItem(existingBasketItem2.Id, catalogItem2, 3, true, 10);
         var updatedBasket = new Basket(basketId, new List<BasketItem> { updatedBasketItem1, updatedBasketItem2 }, null);
 
         _mockBasketsRepository
@@ -592,11 +592,11 @@ public class AddBasketItemsHandlerTests
 
         var existingCatalogItem = new Item(existingItemId, "Existing Item", 10.00m);
         var newCatalogItem = new Item(newItemId, "New Item", 25.00m);
-        var existingBasketItem = new BasketItem(Guid.NewGuid(), existingCatalogItem, 1, false, null, 10.00m);
+        var existingBasketItem = new BasketItem(Guid.NewGuid(), existingCatalogItem, 1, false, null);
         var existingBasket = new Basket(basketId, new List<BasketItem> { existingBasketItem }, null);
         
-        var updatedExistingItem = new BasketItem(existingBasketItem.Id, existingCatalogItem, 3, false, null, 30.00m);
-        var newBasketItem = new BasketItem(Guid.NewGuid(), newCatalogItem, 1, true, 20, 25.00m);
+        var updatedExistingItem = new BasketItem(existingBasketItem.Id, existingCatalogItem, 3, false, null);
+        var newBasketItem = new BasketItem(Guid.NewGuid(), newCatalogItem, 1, true, 20);
         var updatedBasket = new Basket(basketId, new List<BasketItem> { updatedExistingItem, newBasketItem }, null);
 
         _mockBasketsRepository
@@ -653,7 +653,7 @@ public class AddBasketItemsHandlerTests
         
         // After processing both requests, the item should have quantity = 2 + 3 = 5
         // Last request wins for discount properties
-        var finalBasketItem = new BasketItem(Guid.NewGuid(), catalogItem, 5, true, 15, 50.00m);
+        var finalBasketItem = new BasketItem(Guid.NewGuid(), catalogItem, 5, true, 15);
         var updatedBasket = new Basket(basketId, new List<BasketItem> { finalBasketItem }, null);
 
         _mockBasketsRepository
@@ -704,17 +704,17 @@ public class AddBasketItemsHandlerTests
         var catalogItem2 = new Item(existingItemId2, "Existing Item 2", 15.00m);
         var catalogItem3 = new Item(newItemId, "New Item", 20.00m);
         
-        var existingBasketItem1 = new BasketItem(Guid.NewGuid(), catalogItem1, 2, false, null, 10.00m);
-        var existingBasketItem2 = new BasketItem(Guid.NewGuid(), catalogItem2, 1, false, null, 15.00m);
+        var existingBasketItem1 = new BasketItem(Guid.NewGuid(), catalogItem1, 2, false, null);
+        var existingBasketItem2 = new BasketItem(Guid.NewGuid(), catalogItem2, 1, false, null);
         var existingBasket = new Basket(basketId, new List<BasketItem> { existingBasketItem1, existingBasketItem2 }, null);
         
         // Expected results after processing all requests:
         // Item 1: 2 + 1 + 2 = 5 quantity, discounted 25% (last request wins)
         // Item 2: 1 + 3 = 4 quantity, discounted 10%
         // Item 3: 2 quantity, discounted 30%
-        var updatedBasketItem1 = new BasketItem(existingBasketItem1.Id, catalogItem1, 5, true, 25, 25.00m);
-        var updatedBasketItem2 = new BasketItem(existingBasketItem2.Id, catalogItem2, 4, true, 10, 60.00m);
-        var newBasketItem = new BasketItem(Guid.NewGuid(), catalogItem3, 2, true, 30, 40.00m);
+        var updatedBasketItem1 = new BasketItem(existingBasketItem1.Id, catalogItem1, 5, true, 25);
+        var updatedBasketItem2 = new BasketItem(existingBasketItem2.Id, catalogItem2, 4, true, 10);
+        var newBasketItem = new BasketItem(Guid.NewGuid(), catalogItem3, 2, true, 30);
         var updatedBasket = new Basket(basketId, new List<BasketItem> { updatedBasketItem1, updatedBasketItem2, newBasketItem }, null);
 
         _mockBasketsRepository
