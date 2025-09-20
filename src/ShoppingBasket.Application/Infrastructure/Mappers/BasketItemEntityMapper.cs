@@ -15,13 +15,11 @@ public static class BasketItemEntityMapper
             basketItem.TotalPrice);
 
     public static BasketItemEntity ToEntity(this BasketItem basketItem) =>
-        new()
-        {
-            Id = basketItem.Id,
-            Item = basketItem.Item.ToEntity(),
-            Quantity = basketItem.Quantity,
-            IsDiscounted = basketItem.IsDiscounted,
-            DiscountPercentage = basketItem.DiscountPercentage,
-            TotalPrice = basketItem.TotalPrice
-        };
+        new(
+            basketItem.Id,
+            basketItem.Item.ToEntity(),
+            basketItem.Quantity,
+            basketItem.IsDiscounted,
+            basketItem.DiscountPercentage,
+            basketItem.TotalPrice);
 }

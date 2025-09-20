@@ -1,18 +1,9 @@
 ﻿namespace ShoppingBasket.Application.Infrastructure.Entities;
 
-public class BasketItemEntity
-{
-    public Guid Id { get; init; } = Guid.NewGuid();
-    public ItemEntity Item { get; init; } = default!;
-    public int Quantity { get; set; } = 1;
-    public bool IsDiscounted { get; set; } = false;
-    public int? DiscountPercentage { get; set; }
-    public decimal TotalPrice { get; set; }
-
-    public void Update(int quantity, bool isDiscounted, int? discountPercentage)
-    {
-        Quantity += quantity;
-        IsDiscounted = isDiscounted;
-        DiscountPercentage = discountPercentage;
-    }
-}
+public record BasketItemEntity(
+    Guid Id,
+    ItemEntity Item,
+    int Quantity,
+    bool IsDiscounted,
+    int? DiscountPercentage,
+    decimal TotalPrice);

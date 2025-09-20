@@ -29,17 +29,12 @@ public class InMemoryBasketsRepository(
 
     public Task<DataResult<Basket>> UpdateBasketAsync(Basket basket, CancellationToken token)
     {
-        if (!_baskets.TryGetValue(basket.Id, out var basketEntity))
+        if (!_baskets.ContainsKey(basket.Id))
             return Task.FromResult(DataResult<Basket>.Failure(ErrorCodes.BasketNotFound));
 
-        // Update the entity with the new basket data
-        basketEntity.BasketItems.Clear();
-        foreach (var item in basket.Items)
-        {
-            basketEntity.BasketItems.Add(item.ToEntity());
-        }
-        basketEntity.DiscountCode = basket.DiscountCode;
+        // Replace the entire entity with a new one
+        _baskets[basket.Id] = basket.ToEntity();
 
-        return Task.FromResult(DataResult<Basket>.Success(basketEntity.ToDomain()));
+        return Task.FromResult(DataResult<Basket>.Success(basket));
     }
 }

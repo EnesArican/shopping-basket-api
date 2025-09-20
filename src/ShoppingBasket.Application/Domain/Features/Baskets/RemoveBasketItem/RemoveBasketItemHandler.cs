@@ -1,9 +1,10 @@
 using ShoppingBasket.Application.Components.Utils;
+using ShoppingBasket.Application.Domain.Models;
 using ShoppingBasket.Application.Infrastructure.Repositories;
 
 namespace ShoppingBasket.Application.Domain.Features.Baskets.RemoveBasketItem;
 
-using Result = DataResult<Models.Basket>;
+using Result = DataResult<Basket>;
 
 public class RemoveBasketItemHandler(
     IBasketsRepository basketsRepository) : IHandler<RemoveBasketItemCommand, Result>
@@ -18,9 +19,8 @@ public class RemoveBasketItemHandler(
         if (existingItem == null)
             return Result.Failure(ErrorCodes.ItemNotFound);
 
-        var updatedItems = basket.Items.Where(i => i.Item.Id != request.ItemId).ToList();
-        var updatedBasket = basket with { Items = updatedItems };
+        basket.RemoveItem(request.ItemId);
 
-        return await basketsRepository.UpdateBasketAsync(updatedBasket, token);
+        return await basketsRepository.UpdateBasketAsync(basket, token);
     }
 }

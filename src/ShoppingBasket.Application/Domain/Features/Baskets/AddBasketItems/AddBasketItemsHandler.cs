@@ -54,21 +54,14 @@ public class AddBasketItemsHandler(
 
             if (existingItem != null)
             {
-                // Update existing item
-                var updatedItem = existingItem with {
-                    Quantity = existingItem.Quantity + itemRequest.Quantity,
-                    IsDiscounted = itemRequest.IsDiscounted,
-                    DiscountPercentage = itemRequest.DiscountPercentage,
-                    TotalPrice = existingItem.Item.Price * (existingItem.Quantity + itemRequest.Quantity)
-                };
-
-                var index = updatedItems.IndexOf(existingItem);
-                updatedItems[index] = updatedItem;
+                existingItem.Update(
+                    itemRequest.Quantity, 
+                    itemRequest.IsDiscounted, 
+                    itemRequest.DiscountPercentage);
             }
             else
             {
-                // Add new item
-                var newBasketItem = new BasketItem(
+                var newBasketItem = new BasketItem( 
                     Guid.NewGuid(),
                     item,
                     itemRequest.Quantity,
@@ -80,7 +73,7 @@ public class AddBasketItemsHandler(
             }
         }
 
-        var updatedBasket = basket with { Items = updatedItems };
-        return await basketsRepository.UpdateBasketAsync(updatedBasket, token);
+        basket.SetItems(updatedItems);
+        return await basketsRepository.UpdateBasketAsync(basket, token);
     }
 }
