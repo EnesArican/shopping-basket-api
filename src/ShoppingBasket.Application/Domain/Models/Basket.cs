@@ -9,9 +9,18 @@ public class Basket(
     public List<BasketItem> Items { get; private set; } = items;
     public string? DiscountCode { get; set; } = discountCode;
 
-    public void RemoveItem(Guid itemId)
+    public void RemoveItem(Guid basketItemId, int quantity = 1)
     {
-        Items = [.. Items.Where(i => i.Id != itemId)];
+        var basketItem = Items.FirstOrDefault(i => i.Id == basketItemId);
+        if (basketItem == null) return;
+
+        basketItem.DecrementQuantity(quantity);
+        
+        // Remove the item completely if quantity reaches 0
+        if (basketItem.Quantity <= 0)
+        {
+            Items = [.. Items.Where(i => i.Id != basketItemId)];
+        }
     }
 
     public void SetItems(List<BasketItem> items)

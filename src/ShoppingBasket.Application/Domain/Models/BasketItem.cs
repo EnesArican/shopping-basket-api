@@ -22,5 +22,11 @@ public class BasketItem(
         DiscountPercentage = discountPercentage;
         TotalPrice = Item.Price * Quantity;
     }
+
+    public void DecrementQuantity(int amount = 1)
+    {
+        Quantity = Math.Max(0, Quantity - amount);
+        TotalPrice = Item.Price * Quantity;
+    }
 }
 

@@ -3,6 +3,7 @@ using ShoppingBasket.Api.Dtos;
 using ShoppingBasket.Api.Mappers;
 using ShoppingBasket.Application.Domain.Features.Baskets.AddBasketItems;
 using ShoppingBasket.Application.Domain.Features.Baskets.CreateBasket;
+using ShoppingBasket.Application.Domain.Features.Baskets.RemoveBasketItem;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShoppingBasket.Api.Controllers;
@@ -12,6 +13,7 @@ namespace ShoppingBasket.Api.Controllers;
 public class BasketsController(
     CreateBasketHandler createBasketHandler,
     AddBasketItemsHandler addBasketItemsHandler,
+    RemoveBasketItemHandler removeBasketItemHandler,
     ILogger<BasketsController> logger) : ApiController
 {
     /*
@@ -57,6 +59,22 @@ public class BasketsController(
         var cmd = new AddBasketItemsCommand(id, basketItemRequests);
 
         var result = await addBasketItemsHandler.ExecuteAsync(cmd, cancellationToken);
+
+        if (!result.IsValid(out var basket))
+            return BuildErrorResponse(result.ErrorCode);
+
+        return Ok(basket.ToDto());
+    }
+
+    [HttpDelete("{id}/" + ApiRoutes.Basket.RemoveItem)]
+    [SwaggerOperation(Summary = "Remove item from basket")]
+    public async Task<IActionResult> RemoveItemFromBasket(
+        Guid id,
+        Guid itemId,
+        CancellationToken cancellationToken = default)
+    {
+        var cmd = new RemoveBasketItemCommand(id, itemId);
+        var result = await removeBasketItemHandler.ExecuteAsync(cmd, cancellationToken);
 
         if (!result.IsValid(out var basket))
             return BuildErrorResponse(result.ErrorCode);

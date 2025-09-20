@@ -19,7 +19,7 @@ public class RemoveBasketItemHandler(
         if (existingItem == null)
             return Result.Failure(ErrorCodes.ItemNotFound);
 
-        basket.RemoveItem(request.ItemId);
+        basket.RemoveItem(existingItem.Id);
 
         return await basketsRepository.UpdateBasketAsync(basket, token);
     }
