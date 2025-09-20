@@ -3,6 +3,6 @@
 public class BasketEntity
 {
     public Guid Id { get; init; } = Guid.NewGuid();
-    public List<BasketItemEntity> Items { get; } = [];
+    public List<BasketItemEntity> BasketItems { get; } = [];
     public string? DiscountCode { get; set; }
 }

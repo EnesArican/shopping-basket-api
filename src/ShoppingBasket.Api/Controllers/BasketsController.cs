@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ShoppingBasket.Api.Dtos;
 using ShoppingBasket.Api.Mappers;
+using ShoppingBasket.Application.Domain.Features.Basket.AddBasketItems;
 using ShoppingBasket.Application.Domain.Features.Basket.CreateBasket;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -9,6 +11,7 @@ namespace ShoppingBasket.Api.Controllers;
 [Route("[controller]")]
 public class BasketsController(
     CreateBasketHandler createBasketHandler,
+    AddBasketItemsHandler addBasketItemsHandler,
     ILogger<BasketsController> logger) : ApiController
 {
     /*
@@ -38,5 +41,26 @@ public class BasketsController(
         return StatusCode(StatusCodes.Status201Created, basket.ToDto());
     }
 
+    [HttpPost("{id}/" + ApiRoutes.Basket.AddItem)]
+    [SwaggerOperation(Summary = "Add items to basket")]
+    public async Task<IActionResult> AddItemsToBasket(
+        Guid id, 
+        [FromBody] AddBasketItemsRequestDto request, 
+        CancellationToken cancellationToken = default)
+    {
+        var basketItemRequests = request.Items.Select(item => new BasketItemRequest(
+            item.ItemId,
+            item.Quantity,
+            item.IsDiscounted,
+            item.DiscountPercentage)).ToList();
 
+        var cmd = new AddBasketItemsCommand(id, basketItemRequests);
+
+        var result = await addBasketItemsHandler.ExecuteAsync(cmd, cancellationToken);
+
+        if (!result.IsValid(out var basket))
+            return BuildErrorResponse(result.ErrorCode);
+
+        return Ok(basket.ToDto());
+    }
 }

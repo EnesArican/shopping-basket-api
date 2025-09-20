@@ -11,6 +11,12 @@ public abstract class ApiController : ControllerBase
         var rsp = new ErrorResponseDto(errorCode ?? ErrorCodes.ServerError);
         return errorCode switch
         {
+            ErrorCodes.NotFound or 
+            ErrorCodes.ItemNotFound or 
+            ErrorCodes.BasketNotFound => NotFound(rsp),
+            ErrorCodes.InvalidQuantity or
+            ErrorCodes.InvalidDiscountPercentage or
+            ErrorCodes.InvalidRequest => UnprocessableEntity(rsp),
             ErrorCodes.ServerError or _ => ServerError(rsp),
         };
     }

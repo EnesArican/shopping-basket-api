@@ -18,4 +18,28 @@ public class InMemoryBasketsRepository(
 
         return Task.FromResult(DataResult<Basket>.Success(basket.ToDomain()));
     }
+
+    public Task<DataResult<Basket>> GetBasketByIdAsync(Guid basketId, CancellationToken token)
+    {
+        if (!_baskets.TryGetValue(basketId, out var basketEntity))
+            return Task.FromResult(DataResult<Basket>.Failure(ErrorCodes.BasketNotFound));
+
+        return Task.FromResult(DataResult<Basket>.Success(basketEntity.ToDomain()));
+    }
+
+    public Task<DataResult<Basket>> UpdateBasketAsync(Basket basket, CancellationToken token)
+    {
+        if (!_baskets.TryGetValue(basket.Id, out var basketEntity))
+            return Task.FromResult(DataResult<Basket>.Failure(ErrorCodes.BasketNotFound));
+
+        // Update the entity with the new basket data
+        basketEntity.BasketItems.Clear();
+        foreach (var item in basket.Items)
+        {
+            basketEntity.BasketItems.Add(item.ToEntity());
+        }
+        basketEntity.DiscountCode = basket.DiscountCode;
+
+        return Task.FromResult(DataResult<Basket>.Success(basketEntity.ToDomain()));
+    }
 }
