@@ -26,7 +26,7 @@ public class BasketController(
      */
 
     [HttpPost(ApiRoutes.Basket.Create)]
-    [SwaggerOperation(Summary = "→  create new basket")]
+    [SwaggerOperation(Summary = "Create new basket")]
     public async Task<IActionResult> CreateBasket(CancellationToken cancellationToken = default)
     {
         var cmd = new CreateBasketCommand();

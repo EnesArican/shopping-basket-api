@@ -6,8 +6,8 @@ using ShoppingBasket.Application.Infrastructure.Mappers;
 
 namespace ShoppingBasket.Application.Infrastructure.Repositories.InMemory;
 
-public class InMemoryBasketRepository(
-    ILogger<InMemoryBasketRepository> logger) : IBasketRepository
+public class InMemoryBasketsRepository(
+    ILogger<InMemoryBasketsRepository> logger) : IBasketsRepository
 {
     private readonly Dictionary<Guid, BasketEntity> _baskets = [];
 
