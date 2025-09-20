@@ -11,54 +11,38 @@ public class InMemoryItemsRepository(
 {
     private static readonly List<ItemEntity> HardcodedItems = 
     [
-        new ItemEntity
-        {
-            Id = new Guid("11111111-1111-1111-1111-111111111111"),
-            Name = "Laptop",
-            Price = 1000.00m
-        },
-        new ItemEntity
-        {
-            Id = new Guid("22222222-2222-2222-2222-222222222222"),
-            Name = "Wireless Mouse",
-            Price = 30.00m
-        },
-        new ItemEntity
-        {
-            Id = new Guid("33333333-3333-3333-3333-333333333333"),
-            Name = "Mechanical Keyboard",
-            Price = 150.00m
-        },
-        new ItemEntity
-        {
-            Id = new Guid("44444444-4444-4444-4444-444444444444"),
-            Name = "USB-C Hub",
-            Price = 80.00m
-        },
-        new ItemEntity
-        {
-            Id = new Guid("55555555-5555-5555-5555-555555555555"),
-            Name = "Wireless Headphones",
-            Price = 200.00m
-        },
-        new ItemEntity
-        {
-            Id = new Guid("66666666-6666-6666-6666-666666666666"),
-            Name = "External Monitor",
-            Price = 300.00m
-        },
-        new ItemEntity
-        {
-            Id = new Guid("77777777-7777-7777-7777-777777777777"),
-            Name = "Smartphone",
-            Price = 700.00m
-        },
-        new ItemEntity
-        {
-            Id = new Guid("88888888-8888-8888-8888-888888888888"),
-            Name = "Tablet",
-            Price = 400.00m
-        }
+        new ItemEntity(
+            new Guid("11111111-1111-1111-1111-111111111111"),
+            "Laptop",
+            1000.00m),
+        new ItemEntity(
+            new Guid("22222222-2222-2222-2222-222222222222"),
+            "Wireless Mouse",
+            30.00m),
+        new ItemEntity(
+            new Guid("33333333-3333-3333-3333-333333333333"),
+            "Mechanical Keyboard",
+            150.00m),
+        new ItemEntity(
+            new Guid("44444444-4444-4444-4444-444444444444"),
+            "USB-C Hub",
+            80.00m),
+        new ItemEntity(
+            new Guid("55555555-5555-5555-5555-555555555555"),
+            "Wireless Headphones",
+            200.00m),
+        new ItemEntity(
+            new Guid("66666666-6666-6666-6666-666666666666"),
+            "External Monitor",
+            300.00m),
+        new ItemEntity(
+            new Guid("77777777-7777-7777-7777-777777777777"),
+            "Smartphone",
+            700.00m),
+        new ItemEntity(
+            new Guid("88888888-8888-8888-8888-888888888888"),
+            "Tablet",
+            400.00m)
     ];
 
     public Task<DataResult<List<Item>>> GetAllItemsAsync(CancellationToken token)
