@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F2E1EC1B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingBasket.Application", "src\ShoppingBasket.Application\ShoppingBasket.Application.csproj", "{CA009297-F4F2-4B03-904B-62DCA0B7A9C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingBasket.Api.IntegrationTests", "tests\ShoppingBasket.Api.UnitTests\ShoppingBasket.Api.IntegrationTests.csproj", "{B06724D1-47D9-4088-8A8E-EDDCF58B506D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingBasket.Api.IntegrationTests", "tests\ShoppingBasket.Api.IntegrationTests\ShoppingBasket.Api.IntegrationTests.csproj", "{B06724D1-47D9-4088-8A8E-EDDCF58B506D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingBasket.Application.UnitTests", "tests\ShoppingBasket.Application.UnitTests\ShoppingBasket.Application.UnitTests.csproj", "{3AA0E0BC-3186-45C1-BC5C-02061C636AB7}"
 EndProject
