@@ -1,7 +1,7 @@
 using ShoppingBasket.Application.Components.Utils;
 using ShoppingBasket.Application.Infrastructure.Repositories;
 
-namespace ShoppingBasket.Application.Domain.Features.Item.GetItems;
+namespace ShoppingBasket.Application.Domain.Features.Items.GetItems;
 
 using Result = DataResult<List<Models.Item>>;
 

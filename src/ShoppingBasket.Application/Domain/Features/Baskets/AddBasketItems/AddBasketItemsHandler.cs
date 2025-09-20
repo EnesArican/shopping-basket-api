@@ -2,7 +2,7 @@ using ShoppingBasket.Application.Components.Utils;
 using ShoppingBasket.Application.Infrastructure.Repositories;
 using ShoppingBasket.Application.Domain.Models;
 
-namespace ShoppingBasket.Application.Domain.Features.Basket.AddBasketItems;
+namespace ShoppingBasket.Application.Domain.Features.Baskets.AddBasketItems;
 
 using Result = DataResult<Models.Basket>;
 

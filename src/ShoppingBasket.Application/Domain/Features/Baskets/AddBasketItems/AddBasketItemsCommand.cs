@@ -1,4 +1,4 @@
-namespace ShoppingBasket.Application.Domain.Features.Basket.AddBasketItems;
+namespace ShoppingBasket.Application.Domain.Features.Baskets.AddBasketItems;
 
 public record AddBasketItemsCommand(
     Guid BasketId,

@@ -1,7 +1,7 @@
 ﻿using ShoppingBasket.Application.Components.Utils;
 using ShoppingBasket.Application.Infrastructure.Repositories;
 
-namespace ShoppingBasket.Application.Domain.Features.Basket.CreateBasket;
+namespace ShoppingBasket.Application.Domain.Features.Baskets.CreateBasket;
 
 using Result = DataResult<Models.Basket>;
 

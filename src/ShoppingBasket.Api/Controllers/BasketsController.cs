@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShoppingBasket.Api.Dtos;
 using ShoppingBasket.Api.Mappers;
-using ShoppingBasket.Application.Domain.Features.Basket.AddBasketItems;
-using ShoppingBasket.Application.Domain.Features.Basket.CreateBasket;
+using ShoppingBasket.Application.Domain.Features.Baskets.AddBasketItems;
+using ShoppingBasket.Application.Domain.Features.Baskets.CreateBasket;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShoppingBasket.Api.Controllers;

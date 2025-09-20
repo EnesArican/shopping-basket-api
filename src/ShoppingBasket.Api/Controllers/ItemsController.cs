@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShoppingBasket.Api.Mappers;
-using ShoppingBasket.Application.Domain.Features.Item.GetItems;
+using ShoppingBasket.Application.Domain.Features.Items.GetItems;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShoppingBasket.Api.Controllers;

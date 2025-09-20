@@ -1,3 +1,3 @@
-namespace ShoppingBasket.Application.Domain.Features.Item.GetItems;
+namespace ShoppingBasket.Application.Domain.Features.Items.GetItems;
 
 public record GetItemsQuery();

@@ -21,6 +21,7 @@ public static class BasketItemEntityMapper
             Item = basketItem.Item.ToEntity(),
             Quantity = basketItem.Quantity,
             IsDiscounted = basketItem.IsDiscounted,
-            DiscountPercentage = basketItem.DiscountPercentage
+            DiscountPercentage = basketItem.DiscountPercentage,
+            TotalPrice = basketItem.TotalPrice
         };
 }

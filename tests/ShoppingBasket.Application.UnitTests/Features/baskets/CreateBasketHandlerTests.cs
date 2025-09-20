@@ -1,7 +1,7 @@
 using FluentAssertions;
 using Moq;
 using ShoppingBasket.Application.Components.Utils;
-using ShoppingBasket.Application.Domain.Features.Basket.CreateBasket;
+using ShoppingBasket.Application.Domain.Features.Baskets.CreateBasket;
 using ShoppingBasket.Application.Domain.Models;
 using ShoppingBasket.Application.Infrastructure.Repositories;
 

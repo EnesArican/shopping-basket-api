@@ -7,7 +7,7 @@ public class BasketItemEntity
     public int Quantity { get; set; } = 1;
     public bool IsDiscounted { get; set; } = false;
     public int? DiscountPercentage { get; set; }
-    public decimal TotalPrice => Item.Price * Quantity;
+    public decimal TotalPrice { get; set; }
 
     public void Update(int quantity, bool isDiscounted, int? discountPercentage)
     {
