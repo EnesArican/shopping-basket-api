@@ -1,11 +1,12 @@
 using LightBDD.Framework;
 using LightBDD.Framework.Scenarios;
 using LightBDD.XUnit2;
+using ShoppingBasket.Api.IntegrationTests.Common;
 
 namespace ShoppingBasket.Api.IntegrationTests.Scenarios.Items;
 
 [FeatureDescription("Get Items Endpoint Integration Tests")]
-public partial class GetItemsScenario : FeatureFixture
+public partial class GetItemsScenario : IntegrationTestBase
 {
     [Scenario]
     public async Task Getting_all_available_items_successfully()

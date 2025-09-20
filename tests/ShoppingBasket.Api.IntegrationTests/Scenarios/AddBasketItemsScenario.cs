@@ -1,11 +1,12 @@
 using LightBDD.Framework;
 using LightBDD.Framework.Scenarios;
 using LightBDD.XUnit2;
+using ShoppingBasket.Api.IntegrationTests.Common;
 
 namespace ShoppingBasket.Api.IntegrationTests.Scenarios;
 
 [FeatureDescription("Add Basket Items Endpoint Integration Tests")]
-public partial class AddBasketItemsScenario : FeatureFixture
+public partial class AddBasketItemsScenario : IntegrationTestBase
 {
     [Scenario]
     public async Task Adding_items_to_basket_successfully()
