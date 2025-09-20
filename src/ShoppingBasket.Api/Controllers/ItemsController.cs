@@ -7,9 +7,9 @@ namespace ShoppingBasket.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ItemController(
+public class ItemsController(
     GetItemsHandler getItemsHandler,
-    ILogger<ItemController> logger) : ApiController
+    ILogger<ItemsController> logger) : ApiController
 {
     [HttpGet(ApiRoutes.Item.GetAll)]
     [SwaggerOperation(Summary = "Get all available items")]

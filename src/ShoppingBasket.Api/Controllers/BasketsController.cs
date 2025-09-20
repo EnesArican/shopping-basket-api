@@ -7,9 +7,9 @@ namespace ShoppingBasket.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class BasketController(
+public class BasketsController(
     CreateBasketHandler createBasketHandler,
-    ILogger<BasketController> logger) : ApiController
+    ILogger<BasketsController> logger) : ApiController
 {
     /*
         POST /baskets → create new basket
