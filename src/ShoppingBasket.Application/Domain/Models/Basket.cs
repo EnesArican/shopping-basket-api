@@ -3,11 +3,15 @@
 public class Basket(
     Guid id,
     List<BasketItem> items,
-    string? discountCode)
+    string? discountCode = null,
+    string? shippingCountry = null,
+    decimal? shippingCost = null)
 {
     public Guid Id { get; } = id;
     public List<BasketItem> Items { get; private set; } = items;
     public string? DiscountCode { get; private set; } = discountCode;
+    public string? ShippingCountry { get; private set; } = shippingCountry;
+    public decimal? ShippingCost { get; private set; } = shippingCost;
 
     public void RemoveItem(Guid basketItemId, int quantity = 1)
     {
@@ -31,5 +35,11 @@ public class Basket(
     public void SetDiscountCode(string discountCode)
     {
         DiscountCode = discountCode;
+    }
+
+    public void SetShipping(string country, decimal cost)
+    {
+        ShippingCountry = country;
+        ShippingCost = cost;
     }
 }

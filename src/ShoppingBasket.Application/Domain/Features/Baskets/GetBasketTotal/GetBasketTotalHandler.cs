@@ -19,14 +19,17 @@ public class GetBasketTotalHandler(
             return Result.Failure(basketResult.ErrorCode);
 
         var subTotal = CalculateSubTotal(basket.Items, basket.DiscountCode);
-        var vatAmount = subTotal * VatRate;
-        var totalWithVat = subTotal + vatAmount;
-        var totalWithoutVat = subTotal;
+        var shippingCost = basket.ShippingCost ?? 0m;
+        var totalBeforeVat = subTotal + shippingCost;
+        var vatAmount = totalBeforeVat * VatRate;
+        var totalWithVat = totalBeforeVat + vatAmount;
+        var totalWithoutVat = totalBeforeVat;
         var totalItems = basket.Items.Sum(item => item.Quantity);
 
         var result = new BasketTotalResult(
             BasketId: basket.Id,
             SubTotal: subTotal,
+            ShippingCost: shippingCost,
             VatAmount: vatAmount,
             TotalWithVat: totalWithVat,
             TotalWithoutVat: totalWithoutVat,

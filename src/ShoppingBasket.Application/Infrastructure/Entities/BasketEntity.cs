@@ -3,4 +3,6 @@
 public record BasketEntity(
     Guid Id,
     List<BasketItemEntity> BasketItems,
-    string? DiscountCode);
+    string? DiscountCode,
+    string? ShippingCountry,
+    decimal? ShippingCost);

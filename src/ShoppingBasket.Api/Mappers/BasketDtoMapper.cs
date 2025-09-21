@@ -9,5 +9,7 @@ public static class BasketDtoMapper
         new(
             basket.Id,
             basket.Items.Select(i => i.ToDto()).ToList(),
-            basket.DiscountCode);
+            basket.DiscountCode,
+            basket.ShippingCountry,
+            basket.ShippingCost);
 }

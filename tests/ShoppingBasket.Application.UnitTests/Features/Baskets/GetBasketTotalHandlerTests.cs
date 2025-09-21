@@ -164,4 +164,37 @@ public class GetBasketTotalHandlerTests
         basketTotal.TotalWithoutVat.Should().Be(0.00m);
         basketTotal.TotalItems.Should().Be(0);
     }
+
+    [Fact]
+    public async Task ExecuteAsync_WhenBasketHasShipping_IncludesShippingInTotals()
+    {
+        // Arrange
+        var basketId = Guid.NewGuid();
+        var item = new Item(Guid.NewGuid(), "Test Item", 10.00m);
+        var basketItems = new List<BasketItem>
+        {
+            new(Guid.NewGuid(), item, 2, false, null)
+        };
+        var basket = new Basket(basketId, basketItems, null, "UK", 5.99m);
+
+        _mockBasketsRepository.Setup(x => x.GetBasketByIdAsync(basketId, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(DataResult<Basket>.Success(basket));
+
+        var query = new GetBasketTotalQuery(basketId);
+        var cancellationToken = CancellationToken.None;
+
+        // Act
+        var result = await _handler.ExecuteAsync(query, cancellationToken);
+
+        // Assert
+        result.Should().NotBeNull();
+        result.IsValid(out var basketTotal).Should().BeTrue();
+        basketTotal.BasketId.Should().Be(basketId);
+        basketTotal.SubTotal.Should().Be(20.00m); // 2 items * £10
+        basketTotal.ShippingCost.Should().Be(5.99m); // UK shipping
+        basketTotal.TotalWithoutVat.Should().Be(25.99m); // SubTotal + Shipping
+        basketTotal.VatAmount.Should().Be(5.198m); // 20% of (SubTotal + Shipping)
+        basketTotal.TotalWithVat.Should().Be(31.188m); // TotalWithoutVat + VAT
+        basketTotal.TotalItems.Should().Be(2);
+    }
 }

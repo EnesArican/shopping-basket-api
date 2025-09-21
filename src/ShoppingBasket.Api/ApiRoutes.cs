@@ -9,6 +9,7 @@ public static class ApiRoutes
         public const string RemoveItem = "items/{itemId}";
         public const string UpdateItemQuantity = "items/{itemId}/quantity";
         public const string ApplyDiscount = "discount";
+        public const string SetShipping = "shipping";
         public const string GetTotal = "{id}/total";
     }
 

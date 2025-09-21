@@ -9,11 +9,15 @@ public static class BasketMapper
         new(
             entity.Id,
             [.. entity.BasketItems.Select(i => i.ToDomain())],
-            entity.DiscountCode);
+            entity.DiscountCode,
+            entity.ShippingCountry,
+            entity.ShippingCost);
 
     public static BasketEntity ToEntity(this Basket basket) =>
         new(
             basket.Id,
             [.. basket.Items.Select(i => i.ToEntity())],
-            basket.DiscountCode);
+            basket.DiscountCode,
+            basket.ShippingCountry,
+            basket.ShippingCost);
 }

@@ -5,6 +5,7 @@ using ShoppingBasket.Application.Domain.Features.Baskets.ApplyDiscount;
 using ShoppingBasket.Application.Domain.Features.Baskets.CreateBasket;
 using ShoppingBasket.Application.Domain.Features.Baskets.GetBasketTotal;
 using ShoppingBasket.Application.Domain.Features.Baskets.RemoveBasketItem;
+using ShoppingBasket.Application.Domain.Features.Baskets.SetShipping;
 using ShoppingBasket.Application.Domain.Features.Items.GetItems;
 using ShoppingBasket.Application.Infrastructure.Repositories;
 using ShoppingBasket.Application.Infrastructure.Repositories.InMemory;
@@ -21,6 +22,7 @@ public static class ServiceCollectionExtensions
             .AddSingleton<RemoveBasketItemHandler>()
             .AddSingleton<GetBasketTotalHandler>()
             .AddSingleton<ApplyDiscountHandler>()
+            .AddSingleton<SetShippingHandler>()
             .AddSingleton<GetItemsHandler>()
             ;
 

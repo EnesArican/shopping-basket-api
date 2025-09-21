@@ -9,6 +9,7 @@ public static class BasketTotalDtoMapper
         new(
             basketTotal.BasketId,
             basketTotal.SubTotal,
+            basketTotal.ShippingCost,
             basketTotal.VatAmount,
             basketTotal.TotalWithVat,
             basketTotal.TotalWithoutVat,

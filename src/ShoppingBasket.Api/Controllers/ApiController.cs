@@ -17,6 +17,7 @@ public abstract class ApiController : ControllerBase
             ErrorCodes.InvalidQuantity or
             ErrorCodes.InvalidDiscountPercentage or
             ErrorCodes.InvalidDiscountCode or
+            ErrorCodes.InvalidShippingCountry or
             ErrorCodes.InvalidRequest => UnprocessableEntity(rsp),
             ErrorCodes.ServerError or _ => ServerError(rsp),
         };

@@ -14,7 +14,7 @@ public class InMemoryBasketsRepository(
     public Task<DataResult<Basket>> CreateBasketAsync(CancellationToken token)
     {
         var basketId = Guid.NewGuid();
-        var basket = new BasketEntity(basketId, [], null);
+        var basket = new BasketEntity(basketId, [], null, null, null);
         _baskets[basketId] = basket;
 
         return Task.FromResult(DataResult<Basket>.Success(basket.ToDomain()));

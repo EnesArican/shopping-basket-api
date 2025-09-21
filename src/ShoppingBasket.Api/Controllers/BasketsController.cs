@@ -6,6 +6,7 @@ using ShoppingBasket.Application.Domain.Features.Baskets.ApplyDiscount;
 using ShoppingBasket.Application.Domain.Features.Baskets.CreateBasket;
 using ShoppingBasket.Application.Domain.Features.Baskets.GetBasketTotal;
 using ShoppingBasket.Application.Domain.Features.Baskets.RemoveBasketItem;
+using ShoppingBasket.Application.Domain.Features.Baskets.SetShipping;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShoppingBasket.Api.Controllers;
@@ -18,22 +19,9 @@ public class BasketsController(
     RemoveBasketItemHandler removeBasketItemHandler,
     GetBasketTotalHandler getBasketTotalHandler,
     ApplyDiscountHandler applyDiscountHandler,
-    ILogger<BasketsController> logger) : ApiController
+    SetShippingHandler setShippingHandler) : ApiController
 {
-    /*
-        POST /baskets → create new basket
-
-        POST /baskets/{id}/items → Add item(s) to the basket (has isDiscounted property)
-
-        DELETE /baskets/{id}/items/{itemId} → Remove an item from the basket
-
-        POST /baskets/{id}/discount → apply discount code (excluding already discounted items)
-
-        POST /baskets/{id}/shipping -> set shipping country (UK / other) and cost
     
-        GET /baskets/total → Get total cost (2 params for "totalWithVat" & "totalWihtoutVat")
-     */
-
     [HttpPost(ApiRoutes.Basket.Create)]
     [SwaggerOperation(Summary = "Create new basket")]
     public async Task<IActionResult> CreateBasket(CancellationToken cancellationToken = default)
@@ -110,6 +98,22 @@ public class BasketsController(
     {
         var cmd = new ApplyDiscountCommand(id, request.DiscountCode);
         var result = await applyDiscountHandler.ExecuteAsync(cmd, cancellationToken);
+
+        if (!result.IsValid(out var basket))
+            return BuildErrorResponse(result.ErrorCode);
+
+        return Ok(basket.ToDto());
+    }
+
+    [HttpPost("{id}/" + ApiRoutes.Basket.SetShipping)]
+    [SwaggerOperation(Summary = "Set shipping country and cost for basket")]
+    public async Task<IActionResult> SetShippingForBasket(
+        Guid id,
+        [FromBody] SetShippingRequestDto request,
+        CancellationToken cancellationToken = default)
+    {
+        var cmd = new SetShippingCommand(id, request.Country);
+        var result = await setShippingHandler.ExecuteAsync(cmd, cancellationToken);
 
         if (!result.IsValid(out var basket))
             return BuildErrorResponse(result.ErrorCode);
