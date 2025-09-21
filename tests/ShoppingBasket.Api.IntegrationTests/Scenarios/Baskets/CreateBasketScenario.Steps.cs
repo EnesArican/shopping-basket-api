@@ -1,9 +1,8 @@
 using FluentAssertions;
 using ShoppingBasket.Api.Dtos;
 using System.Net;
-using System.Net.Http.Json;
 
-namespace ShoppingBasket.Api.IntegrationTests.Scenarios;
+namespace ShoppingBasket.Api.IntegrationTests.Scenarios.Baskets;
 
 public partial class CreateBasketScenario
 {

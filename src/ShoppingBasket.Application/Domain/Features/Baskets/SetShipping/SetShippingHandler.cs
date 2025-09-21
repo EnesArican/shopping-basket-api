@@ -1,7 +1,5 @@
 using ShoppingBasket.Application.Components.Utils;
 using ShoppingBasket.Application.Infrastructure.Repositories;
-using ShoppingBasket.Application.Domain.Models;
-using ShoppingBasket.Application.Components.Services;
 
 namespace ShoppingBasket.Application.Domain.Features.Baskets.SetShipping;
 

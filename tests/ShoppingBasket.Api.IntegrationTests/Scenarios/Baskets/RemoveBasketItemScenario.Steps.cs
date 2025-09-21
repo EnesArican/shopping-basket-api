@@ -4,7 +4,7 @@ using ShoppingBasket.Api.IntegrationTests.Common;
 using System.Net;
 using System.Net.Http.Json;
 
-namespace ShoppingBasket.Api.IntegrationTests.Scenarios;
+namespace ShoppingBasket.Api.IntegrationTests.Scenarios.Baskets;
 
 public partial class RemoveBasketItemScenario : IntegrationTestBase
 {

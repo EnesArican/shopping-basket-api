@@ -3,7 +3,7 @@ using System.Net.Http.Json;
 using FluentAssertions;
 using ShoppingBasket.Api.Dtos;
 
-namespace ShoppingBasket.Api.IntegrationTests.Scenarios;
+namespace ShoppingBasket.Api.IntegrationTests.Scenarios.Baskets;
 
 public partial class GetBasketTotalScenario
 {
