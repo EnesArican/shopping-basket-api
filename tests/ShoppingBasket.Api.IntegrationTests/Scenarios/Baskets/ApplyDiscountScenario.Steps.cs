@@ -3,9 +3,9 @@ using System.Net.Http.Json;
 using FluentAssertions;
 using ShoppingBasket.Api.Dtos;
 
-namespace ShoppingBasket.Api.IntegrationTests.Scenarios;
+namespace ShoppingBasket.Api.IntegrationTests.Scenarios.Baskets;
 
-public partial class SetShippingScenario
+public partial class ApplyDiscountScenario
 {
     private Guid _basketId;
 
@@ -19,21 +19,21 @@ public partial class SetShippingScenario
         _basketId = basketDto!.Id;
     }
 
-    private async Task When_I_set_shipping_to_UK()
+    private async Task When_I_apply_a_valid_discount_code()
     {
-        var request = new SetShippingRequestDto("UK");
+        var request = new ApplyDiscountRequestDto("SAVE20");
         var content = CreateJsonContent(request);
-        Response = await Client!.PostAsync($"/baskets/{_basketId}/shipping", content);
+        Response = await Client!.PostAsync($"/baskets/{_basketId}/discount", content);
     }
 
-    private async Task When_I_set_shipping_with_invalid_country()
+    private async Task When_I_apply_an_invalid_discount_code()
     {
-        var request = new SetShippingRequestDto("");
+        var request = new ApplyDiscountRequestDto("INVALID123");
         var content = CreateJsonContent(request);
-        Response = await Client!.PostAsync($"/baskets/{_basketId}/shipping", content);
+        Response = await Client!.PostAsync($"/baskets/{_basketId}/discount", content);
     }
 
-    private async Task Then_the_shipping_should_be_set_successfully()
+    private async Task Then_the_discount_should_be_applied_successfully()
     {
         Response.Should().NotBeNull();
         Response!.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -41,18 +41,16 @@ public partial class SetShippingScenario
         var updatedBasket = await DeserializeResponse<BasketDto>();
         updatedBasket.Should().NotBeNull();
         updatedBasket!.Id.Should().Be(_basketId);
-        updatedBasket.ShippingCountry.Should().Be("UK");
-        updatedBasket.ShippingCost.Should().Be(5.99m);
+        updatedBasket.DiscountCode.Should().Be("SAVE20");
     }
 
-    private async Task And_the_basket_should_contain_UK_shipping_details()
+    private async Task And_the_basket_should_contain_the_discount_code()
     {
-        var basketWithShipping = await DeserializeResponse<BasketDto>();
-        basketWithShipping!.ShippingCountry.Should().Be("UK");
-        basketWithShipping.ShippingCost.Should().Be(5.99m);
+        var basketWithDiscount = await DeserializeResponse<BasketDto>();
+        basketWithDiscount!.DiscountCode.Should().Be("SAVE20");
     }
 
-    private async Task Then_the_request_should_fail_with_invalid_shipping_country_error()
+    private async Task Then_the_request_should_fail_with_invalid_discount_code_error()
     {
         Response.Should().NotBeNull();
         Response!.StatusCode.Should().Be(HttpStatusCode.UnprocessableEntity);
@@ -60,6 +58,6 @@ public partial class SetShippingScenario
         var errorResponse = await DeserializeResponse<ErrorResponseDto>();
         
         errorResponse.Should().NotBeNull();
-        errorResponse!.ErrorMessage.Should().Be("invalid_shipping_country");
+        errorResponse!.ErrorMessage.Should().Be("invalid_discount_code");
     }
 }

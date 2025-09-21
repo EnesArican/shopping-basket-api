@@ -3,7 +3,7 @@ using LightBDD.Framework.Scenarios;
 using LightBDD.XUnit2;
 using ShoppingBasket.Api.IntegrationTests.Common;
 
-namespace ShoppingBasket.Api.IntegrationTests.Scenarios;
+namespace ShoppingBasket.Api.IntegrationTests.Scenarios.Baskets;
 
 [FeatureDescription("Get Basket Total Endpoint Integration Tests")]
 public partial class GetBasketTotalScenario : IntegrationTestBase

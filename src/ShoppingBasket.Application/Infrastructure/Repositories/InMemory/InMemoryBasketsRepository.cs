@@ -33,7 +33,6 @@ public class InMemoryBasketsRepository(
         if (!_baskets.ContainsKey(basket.Id))
             return Task.FromResult(DataResult<Basket>.Failure(ErrorCodes.BasketNotFound));
 
-        // Replace the entire entity with a new one
         _baskets[basket.Id] = basket.ToEntity();
 
         return Task.FromResult(DataResult<Basket>.Success(basket));
