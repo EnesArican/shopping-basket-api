@@ -5,7 +5,7 @@ using ShoppingBasket.Application.Domain.Features.Baskets.CreateBasket;
 using ShoppingBasket.Application.Domain.Models;
 using ShoppingBasket.Application.Infrastructure.Repositories;
 
-namespace ShoppingBasket.Application.UnitTests;
+namespace ShoppingBasket.Application.UnitTests.Features.Baskets;
 
 public class CreateBasketHandlerTests
 {
