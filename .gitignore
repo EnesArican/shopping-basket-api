@@ -416,3 +416,10 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# Cursor files
+.cursorrules
+.cursor/
+docs/working-memory
+docs/memory-bank
+docs/templates

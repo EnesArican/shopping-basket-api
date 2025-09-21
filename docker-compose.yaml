@@ -1,0 +1,9 @@
+services:
+  shopping-basket-api:
+    container_name: shopping-basket-api
+    build:
+      context: ./src
+    image: shopping-basket-api:latest
+    restart: unless-stopped
+    ports:
+      - 8000:8080
