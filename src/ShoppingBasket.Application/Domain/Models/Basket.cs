@@ -7,7 +7,7 @@ public class Basket(
 {
     public Guid Id { get; } = id;
     public List<BasketItem> Items { get; private set; } = items;
-    public string? DiscountCode { get; set; } = discountCode;
+    public string? DiscountCode { get; private set; } = discountCode;
 
     public void RemoveItem(Guid basketItemId, int quantity = 1)
     {
@@ -26,5 +26,10 @@ public class Basket(
     public void SetItems(List<BasketItem> items)
     {
         Items = items;
+    }
+
+    public void SetDiscountCode(string discountCode)
+    {
+        DiscountCode = discountCode;
     }
 }

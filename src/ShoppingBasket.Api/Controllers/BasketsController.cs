@@ -2,6 +2,7 @@
 using ShoppingBasket.Api.Dtos;
 using ShoppingBasket.Api.Mappers;
 using ShoppingBasket.Application.Domain.Features.Baskets.AddBasketItems;
+using ShoppingBasket.Application.Domain.Features.Baskets.ApplyDiscount;
 using ShoppingBasket.Application.Domain.Features.Baskets.CreateBasket;
 using ShoppingBasket.Application.Domain.Features.Baskets.GetBasketTotal;
 using ShoppingBasket.Application.Domain.Features.Baskets.RemoveBasketItem;
@@ -16,6 +17,7 @@ public class BasketsController(
     AddBasketItemsHandler addBasketItemsHandler,
     RemoveBasketItemHandler removeBasketItemHandler,
     GetBasketTotalHandler getBasketTotalHandler,
+    ApplyDiscountHandler applyDiscountHandler,
     ILogger<BasketsController> logger) : ApiController
 {
     /*
@@ -97,5 +99,21 @@ public class BasketsController(
             return BuildErrorResponse(result.ErrorCode);
 
         return Ok(basketTotal.ToDto());
+    }
+
+    [HttpPost("{id}/" + ApiRoutes.Basket.ApplyDiscount)]
+    [SwaggerOperation(Summary = "Apply discount code to basket")]
+    public async Task<IActionResult> ApplyDiscountToBasket(
+        Guid id,
+        [FromBody] ApplyDiscountRequestDto request,
+        CancellationToken cancellationToken = default)
+    {
+        var cmd = new ApplyDiscountCommand(id, request.DiscountCode);
+        var result = await applyDiscountHandler.ExecuteAsync(cmd, cancellationToken);
+
+        if (!result.IsValid(out var basket))
+            return BuildErrorResponse(result.ErrorCode);
+
+        return Ok(basket.ToDto());
     }
 }

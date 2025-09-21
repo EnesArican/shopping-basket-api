@@ -16,6 +16,7 @@ public abstract class ApiController : ControllerBase
             ErrorCodes.BasketNotFound => NotFound(rsp),
             ErrorCodes.InvalidQuantity or
             ErrorCodes.InvalidDiscountPercentage or
+            ErrorCodes.InvalidDiscountCode or
             ErrorCodes.InvalidRequest => UnprocessableEntity(rsp),
             ErrorCodes.ServerError or _ => ServerError(rsp),
         };

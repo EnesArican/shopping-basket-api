@@ -9,4 +9,5 @@ public static class ErrorCodes
     public const string BasketNotFound = "basket_not_found";
     public const string InvalidDiscountPercentage = "invalid_discount_percentage";
     public const string InvalidRequest = "invalid_request";
+    public const string InvalidDiscountCode = "invalid_discount_code";
 }
