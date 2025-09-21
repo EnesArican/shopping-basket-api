@@ -8,7 +8,7 @@ To run the application, you will need to have [docker](https://docs.docker.com/g
 </br>
 
 **Build and run the application** </br>
-Open a command prompt and navigate to the project folder. Start up the application by running the `run-api.sh` bash script.
+Open a terminal and navigate to the project folder. Start up the application by running the `run-api.sh` bash script.
 ```shell
 $ ./run-api.sh
 ```
